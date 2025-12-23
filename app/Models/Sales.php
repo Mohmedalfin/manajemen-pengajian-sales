@@ -66,14 +66,14 @@ class Sales extends Model
         });
     }
 
+    public function transaksi_penjualan()
+    {
+        return $this->hasMany(TransaksiPenjualan::class, 'sales_id', 'id');
+    }
+
     public function user()
     {
         return $this->hasOne(User::class, 'sales_id', 'sales_id');
-    }
-
-    public function transaksi()
-    {
-        return $this->hasMany(TransaksiPenjualan::class, 'sales_id', 'sales_id');
     }
 
     public function laporanGaji()

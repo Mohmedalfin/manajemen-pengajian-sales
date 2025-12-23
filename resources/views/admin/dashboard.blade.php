@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1 class="text-3xl font-bold text-gray-800 mb-8">Statistik Hari Ini</h1>
+<h1 class="text-3xl font-bold text-gray-800 mb-8">Statistik Bulan : <span class="font-bold text-blue-500"> {{ now()->translatedFormat('F') }}</span></h1>
 
 {{-- CARD STATISTIC SECTION --}}
 <div class="grid grid-cols-4 gap-6 mb-10">
@@ -27,7 +27,7 @@
     {{-- Card 2: Jumlah Unit --}}
     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
         <div class="flex justify-between items-start mb-2">
-            <p class="text-gray-500 text-sm font-medium">Jumlah Unit</p>
+            <p class="text-gray-500 text-sm font-medium">Jumlah Unit Terjual</p>
             <div class="p-1 bg-blue-100 rounded-lg text-blue-600">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                     <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/>
@@ -45,7 +45,7 @@
                 </svg>
             </div>
         </div>
-        <div class="text-3xl font-bold text-gray-800">150 <span class="text-xl font-medium text-gray-500">Unit</span></div>
+        <div class="text-3xl font-bold text-gray-800">{{ $totalUnitBulanIni }} <span class="text-xl font-medium text-gray-500">Unit</span></div>
     </div>
 
     {{-- Card 3: Total Penjualan --}}
@@ -63,7 +63,7 @@
                 </svg>
             </div>
         </div>
-        <div class="text-2xl font-bold text-gray-800">Rp 5.000.000</div>
+        <div class="text-2xl font-bold text-gray-800">Rp {{ number_format($totalPenjualan, 0, ',', '.') }}</div>
     </div>
     
     {{-- Card 4: Total Gaji --}}
@@ -78,7 +78,7 @@
                 </svg>
             </div>
         </div>
-        <div class="text-2xl font-bold text-gray-800">Rp 3.000.000</div>
+        <div class="text-2xl font-bold text-gray-800">Rp</div>
     </div>
 </div>
 
