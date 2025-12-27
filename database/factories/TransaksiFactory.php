@@ -51,15 +51,12 @@ class TransaksiFactory extends Factory
 
         return [
             'kode_transaksi'    => 'TRX-' . strtoupper(Str::random(8)),
-            'tanggal_transaksi' => $this->faker->dateTimeThisMonth(), // Transaksi bulan ini
-            
-            // KUNCI JAWABAN ANDA DISINI:
-            'sales_id'          => $sales->id,  
-            'produk_id'         => $barang->id,  
-            
+            'tanggal_transaksi' => $this->faker->dateTimeThisMonth(),
+            'sales_id'          => $sales->id,
+            'produk_id'         => $barang->id,
             'jumlah_unit'       => $jumlahUnit,
-            'harga_total'       => $hargaTotal,
-            'komisi_penjualan'  => $komisiPenjualan
+            'harga_total'       => (int) $hargaTotal,
+            'komisi_penjualan'  => (int) $komisiPenjualan,
         ];
     }
 }

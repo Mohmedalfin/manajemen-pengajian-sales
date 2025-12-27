@@ -20,14 +20,14 @@ class TransaksiPenjualan extends Model
         'produk_id',
         'jumlah_unit',
         'harga_total',
-        'komisi_yang_dihitung',
+        'komisi_penjualan',
     ];
 
     protected $casts = [
         'tanggal_transaksi' => 'date',
         'jumlah_unit' => 'integer',
         'harga_total' => 'decimal:2',
-        'komisi_yang_dihitung' => 'decimal:2',
+        'komisi_penjualan' => 'decimal:2',
     ];
 
     protected static function newFactory()
@@ -37,11 +37,11 @@ class TransaksiPenjualan extends Model
 
     public function sales()
     {
-        return $this->belongsTo(Sales::class, 'sales_id', 'sales_id');
+        return $this->belongsTo(Sales::class, 'sales_id', 'id');
     }
 
-    public function produk()
+    public function barang()
     {
-        return $this->belongsTo(Produk::class, 'produk_id', 'produk_id');
+        return $this->belongsTo(Barang::class, 'produk_id', 'id');
     }
 }

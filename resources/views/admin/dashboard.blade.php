@@ -78,7 +78,7 @@
                 </svg>
             </div>
         </div>
-        <div class="text-2xl font-bold text-gray-800">Rp</div>
+        <div class="text-2xl font-bold text-gray-800">Rp {{ number_format($totalGaji, 0, ',', '.') }}</div>
     </div>
 </div>
 
@@ -117,7 +117,7 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer Name</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit Terjual</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nomor Telepon</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal/Waktu Transaksi</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Penjualan</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Komisi</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -126,87 +126,35 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 
                 {{-- Data Dummy --}}
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jane Cooper</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">30 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(225) 555-0118</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Aktif</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Floyd Miles</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">20 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(205) 555-0100</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Tidak Aktif</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Ronald Richards</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">8 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(302) 555-0107</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Tidak Aktif</span>
-                    </td>
-                </tr>
-                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Marvin McKinney</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">15 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(252) 555-0126</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Aktif</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jerome Bell</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">3 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(629) 555-0129</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Aktif</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Kathryn Murphy</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">5 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(406) 555-0120</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Aktif</span>
-                    </td>
-                </tr>
-                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jacob Jones</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">20 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(208) 555-0112</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Aktif</span>
-                    </td>
-                </tr>
-                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Kristin Watson</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">5 Unit</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">(704) 555-0127</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">Rp 8.500.00</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 425.000</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Tidak Aktif</span>
-                    </td>
-                </tr>
-                
+                @foreach ($pertransaksi as $trx)
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {{ $trx->sales->nama_lengkap ?? '-' }}
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
+                            {{ $trx->jumlah_unit }} Unit
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
+                            {{ $trx->tanggal_transaksi->format('H:i, d M Y ') }}
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">
+                            Rp {{ number_format($trx->harga_total, 0, ',', '.') }}
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">
+                            Rp {{ number_format($trx->komisi_penjualan, 0, ',', '.') }}
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-3 py-1 inline-flex text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                Aktif
+                            </span>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

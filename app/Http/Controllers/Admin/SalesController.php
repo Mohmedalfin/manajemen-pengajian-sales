@@ -9,10 +9,20 @@ use App\Http\Requests\SalesRequest;
 
 class SalesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $sales = Sales::orderByDesc('id')->paginate(10);
-        return view('admin.data-sales', compact('sales'));     
+        $query = Sales::query();
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nama_lengkap', 'like', '%' . $request->search . '%')
+                ->orWhere('jabatan', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $sales = $query->orderByDesc('id')->paginate(10);
+
+        return view('admin.data-sales', compact('sales'));
     }
 
     public function store(SalesRequest $request): RedirectResponse
@@ -24,10 +34,9 @@ class SalesController extends Controller
 
     public function update(SalesRequest $request, $id): RedirectResponse
     {
-        $data = $request->validated();
         $sales = Sales::findOrFail($id);
-        $sales->update($data);
-        return redirect()->back()->with('success', 'Data sales berhasil diupdate');    
+        $sales->update($request->validated());
+        return redirect()->back()->with('success', 'Data sales berhasil diupdate');
     }  
 
     public function destroy($id)

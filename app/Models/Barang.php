@@ -11,12 +11,8 @@ class Barang extends Model
     use HasFactory;
 
     protected $table = 'produk';
-    protected $primaryKey = 'id';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
+    
     protected $fillable = [
-        'kode_produk',
         'nama_produk',
         'harga_jual_unit',
         'stok',
@@ -29,14 +25,15 @@ class Barang extends Model
 
     protected static function booted()
     {
-        static::created(function ($produk) {
-            $produk->kode_produk = 'PRD-' . str_pad($produk->id, 3, '0', STR_PAD_LEFT);
-            $produk->save();
+        static::creating(function ($produk) {
+            if (empty($produk->kode_produk)) {
+                $produk->kode_produk = 'PRD-' . strtoupper(Str::random(8));
+            }
         });
     }
 
     public function transaksi()
     {
-        return $this->hasMany(TransaksiPenjualan::class, 'produk_id', 'produk_id');
+        return $this->hasMany(TransaksiPenjualan::class, 'produk_id', 'id');
     }
 }

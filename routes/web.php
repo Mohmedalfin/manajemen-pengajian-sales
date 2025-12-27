@@ -48,6 +48,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('admin/barang', ProdukController::class)->names([
         'store' => 'admin.barang.store',
     ]);
+    Route::put('/barang/{barang}', [ProdukController::class, 'update'])->name('barang.update');
+    Route::delete('/barang/{barang}', [ProdukController::class,'destroy'])->name('barang.destroy');
+
+
 
 
     // Laporan

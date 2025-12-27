@@ -19,7 +19,7 @@
             
             <div class="flex flex-col md:col-span-2">
                 <label class="mb-2 text-sm font-semibold text-gray-700">Nama Produk</label>
-                <input type="text" name="nama_produk" required placeholder="Contoh: Sepatu Lari Pro" 
+                <input type="text"  x-model="formData.nama_produk" name="nama_produk" required placeholder="Contoh: Sepatu Lari Pro" 
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500  focus:border-transparent outline-none transition">
             </div>
 
@@ -31,13 +31,13 @@
 
             <div class="flex flex-col">
                 <label class="mb-2 text-sm font-semibold text-gray-700">Jumlah Stok</label>
-                <input type="number" name="stok" required placeholder="0" 
+                <input type="number" name="stok" required placeholder="0"  x-model.number="formData.stok"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500  outline-none transition">
             </div>
 
             <div class="flex flex-col">
                 <label class="mb-2 text-sm font-semibold text-gray-700">Harga Jual (Rp)</label>
-                <input type="number" name="harga_jual_unit" required placeholder="Contoh: 150000" 
+                <input type="number" name="harga_jual_unit" required placeholder="Contoh: 150000" x-model.number="formData.harga_jual_unit"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500  outline-none transition">
             </div>
 

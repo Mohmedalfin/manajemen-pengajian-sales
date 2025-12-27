@@ -23,18 +23,31 @@
             <header class="flex justify-between items-center mb-10">
                 
             <div class="w-0 h-10"></div> 
-                <div class="relative w-full mx-auto mr-8"> 
-                    <input type="text" placeholder="Telusuri" 
+                <form method="GET" class="relative w-full mx-auto mr-8">
+                    <input
+                        type="text"
+                        name="search"
+                        id="searchInput"
+                        placeholder="Telusuri"
+                        value="{{ request('search') }}"
                         class="w-full p-3 pl-4 
-                               border-2 border-blue-400  
-                               rounded-full 
-                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                               text-gray-700 placeholder-blue-500 font-medium 
-                               shadow-md outline-none bg-white">
-                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-blue-500">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </div>
-                </div>
+                            border-2 border-blue-400  
+                            rounded-full 
+                            focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                            text-gray-700 placeholder-blue-500 font-medium 
+                            shadow-md outline-none bg-white"
+                    >
+
+                    <button type="submit"
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </form>
+
                 
                 {{-- PROFIL AVATAR --}}
                 <div class="relative">
@@ -95,6 +108,27 @@
 </script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const input = document.getElementById('searchInput');
+    const form = document.getElementById('searchForm');
+
+    let timer = null;
+
+    input.addEventListener('input', function () {
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+            if (this.value.trim() === '') {
+                // input kosong → reload ke data awal
+                window.location.href = window.location.pathname;
+            } else {
+                // input ada → submit search
+                form.submit();
+            }
+        }, 400); // debounce 400ms
+    });
+</script>
+
 
 @if (session('success'))
 <script>

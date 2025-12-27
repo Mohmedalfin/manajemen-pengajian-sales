@@ -50,7 +50,7 @@ class Sales extends Model
                 'username'      => $sales->kode_sales, 
                 'password_hash' => Hash::make('sales'), 
                 'role'          => 'sales',
-                'sales_id'      => $sales->sales_id, 
+                'sales_id'      => $sales->id, 
             ]);
 
             // 2. Persiapkan Kirim WhatsApp

@@ -14,8 +14,6 @@ class UserSeed extends Seeder
         // 1. Jalankan SalesSeed terlebih dahulu
         // Karena di Model Sales sudah ada static::created -> User::create,
         // Maka 60 User Sales otomatis sudah terbuat saat baris ini dijalankan.
-        $this->call(SalesSeed::class); 
-
         // 2. Membuat satu Admin dengan password: password
         User::factory()->admin()->create([
             'username' => 'admin',

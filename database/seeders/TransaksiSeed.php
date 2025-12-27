@@ -13,6 +13,6 @@ class TransaksiSeed extends Seeder
         // File ini tugasnya hanya satu: Jalankan Factory Transaksi.
         
         // Perbaikan: Ganti 'Transaksi' jadi 'TransaksiPenjualan' (sesuai use diatas)
-        TransaksiPenjualan::factory(50)->create(); 
+        TransaksiPenjualan::factory(30)->create(); 
     }
 }

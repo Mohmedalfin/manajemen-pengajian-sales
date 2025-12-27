@@ -21,7 +21,6 @@ class SalesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kode_sales'           => 'required|unique:sales,kode_sales',
             'nama_lengkap'         => 'required|string|max:100',
             'kontak'               => 'required|string|max:50',
             'jabatan'              => 'required|string|max:50',
@@ -29,17 +28,5 @@ class SalesRequest extends FormRequest
             'target_penjualan_bln' => 'required|numeric|min:0',
             'status_aktif'         => 'required|boolean',
         ];
-    }
-
-    protected function prepareForValidation()
-    {
-        if (!$this->has('kode_sales') || $this->kode_sales == null) {
-            $lastSales = \App\Models\Sales::orderBy('id', 'desc')->first();
-            $nextNumber = $lastSales ? ((int) substr($lastSales->kode_sales, 4)) + 1 : 1;
-            
-            $this->merge([
-                'kode_sales' => 'SLS-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT),
-            ]);
-        }
     }
 }
