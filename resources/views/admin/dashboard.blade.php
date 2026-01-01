@@ -1,8 +1,18 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
 @extends('layouts.admin')
 @section('content')
-
-<h1 class="text-3xl font-bold text-gray-800 mb-8">Statistik Bulan : <span class="font-bold text-blue-500"> {{ now()->translatedFormat('F') }}</span></h1>
+<div class="relative bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 mb-8 text-white shadow-lg overflow-hidden">
+    <div class="relative z-10">
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">
+            Hallo <span class="font-bold text-yellow-500">{{ $user->username ?? '' }}</span> 
+        </h1>
+        <h1 class="text-2xl font-bold mb-4">Statistik Bulan  <span class="font-bold text-yellow-500"> {{ now()->translatedFormat('F') }}</span></h1>
+        <p class="text-base mb-3">
+            Pantau aktivitas terkini dan kelola data transaksi penjualan Anda di sini.
+        </p>
+    </div>
+    <div class="absolute right-0 top-0 h-full w-1/3 bg-white opacity-10 transform skew-x-12 translate-x-10"></div>
+</div>
 
 <div class="grid grid-cols-4 gap-6 mb-10">
     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
@@ -72,89 +82,152 @@
         </div>
         <div class="text-2xl font-bold text-gray-800">Rp {{ number_format($totalPenjualan, 0, ',', '.') }}</div>
     </div>
-    
-    
 </div>
-
 <div class="bg-white p-6 rounded-xl shadow mb-8">
-    <h3 class="text-sm font-semibold text-gray-700 mb-4">
-        Penjualan Bulanan
-    </h3>
 
-    <canvas id="salesChart" height="120"></canvas>
+    <h3 class="text-sm font-semibold text-gray-700 mb-4">
+
+        Penjualan Bulanan
+
+    </h3>
+    <canvas id="salesChart" height="56"></canvas>
+
 </div>
+
+
 
 <div class="bg-white p-6 rounded-2xl shadow-lg">
-    
+
+   
+
     <div class="flex justify-between items-center mb-6">
+
         <div>
+
             <h2 class="text-xl font-bold text-gray-800">Semua Sales</h2>
-            <p class="text-sm text-green-600">Rank sales dengan penjualan terbesar</p> 
+
+            <p class="text-sm text-green-600">Rank sales dengan penjualan terbesar</p>
+
         </div>
+
     </div>
 
+
+
     <div class="overflow-x-auto">
+
         <table class="min-w-full divide-y divide-gray-200">
+
             <thead class="bg-gray-50">
+
                 <tr>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer Name</th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit Terjual</th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Penjualan</th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Komisi</th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Gaji</th>
+
                 </tr>
+
             </thead>
+
             <tbody class="bg-white divide-y divide-gray-200">
+
                 @foreach ($topSales as $index => $trx)
+
                     <tr class="hover:bg-gray-50 transition">
+
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+
                             <div class="flex items-center">
+
                                 <span class="flex items-center justify-center w-6 h-6 rounded-full {{ $index == 0 ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-500' }} text-xs font-bold mr-3">
+
                                     {{ $index + 1 }}
+
                                 </span>
+
                                 {{ $trx->sales->nama_lengkap ?? 'Sales Terhapus' }}
+
                             </div>
+
                         </td>
+
+
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
-                            {{ $trx->total_unit }} Unit 
+
+                            {{ $trx->total_unit }} Unit
+
                         </td>
+
+
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-semibold">
+
                             Rp {{ number_format($trx->total_omset, 0, ',', '.') }}
+
                         </td>
+
+
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">
+
                             Rp {{ number_format($trx->total_komisi, 0, ',', '.') }}
+
                         </td>
 
+
+
                         <td class="px-6 py-4 whitespace-nowrap">
+
                             @if($index == 0)
+
                                 <span class="px-3 py-1 inline-flex text-xs font-bold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">
+
                                     👑 Top Sales
+
                                 </span>
+
                             @else
+
                                 <span class="px-3 py-1 inline-flex text-xs font-semibold rounded-full bg-green-100 text-green-800">
+
                                     Aktif
+
                                 </span>
+
                             @endif
+
                         </td>
+
                     </tr>
+
                 @endforeach
+
             </tbody>
+
         </table>
+
     </div>  
     <div class="mt-4 text-sm text-gray-500">
         Showing data Top Sales
     </div>
 </div>
 
-{{-- SCRIPT JAVASCRIPT UNTUK DROPDOWN SORT --}}
+
+
+
+
 <script>
     function selectSort(value) {
         document.getElementById('sortLabel').innerText = value;
         toggleSortDropdown();
-        // Logika sorting bisa ditambahkan di sini
     }
 
     function toggleSortDropdown() {
@@ -191,13 +264,11 @@
     });
 </script>
 
-{{-- Data untuk Chart.js --}}
 <script>
     window.chartData = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
-        revenue: [120000000, 95000000, 140000000, 110000000, 190000000, 120000000, 95000000, 140000000, 110000000, 160000000, 110000000, 160000000],
-        // transaksi: [120, 95, 140, 110, 160],
-        // unit: [340, 280, 410, 360, 480]
+        revenue: @json($grafikRevenue),
+        unit: @json($grafikUnit)
     };
 </script>
 

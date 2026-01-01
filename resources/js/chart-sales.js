@@ -16,6 +16,22 @@ export function initSalesChart(chartData) {
         },
         options: {
             responsive: true,
+            
+            scales: {
+                y: {
+                    beginAtZero: true, 
+                    ticks: {
+                        stepSize: 50000000, 
+                        
+                        callback: function(value) {
+                            if (value === 0) return '0'; 
+                            return (value / 1000000) + ' Jt';
+                        }
+                    }
+                }
+            },
+            // -----------------------------------
+
             onClick: (evt, elements) => {
                 if (!elements.length) return;
 
@@ -23,8 +39,8 @@ export function initSalesChart(chartData) {
                 window.showSalesDetail({
                     bulan: chartData.labels[index],
                     revenue: chartData.revenue[index],
-                    transaksi: chartData.transaksi[index],
-                    unit: chartData.unit[index],
+                    transaksi: chartData.transaksi ? chartData.transaksi[index] : 0, // Safety check jika data transaksi null
+                    unit: chartData.unit ? chartData.unit[index] : 0, // Safety check
                 });
             }
         }

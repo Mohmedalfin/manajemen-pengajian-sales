@@ -7,91 +7,93 @@
 <div class="space-y-6"> 
 
     {{-- 1. Filter Periode (FIXED: Dropdown tidak terpotong) --}}
-    <div class="relative bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 mb-10 text-white shadow-lg">
-        
-        {{-- Elemen Dekorasi Background - Sekarang dibungkus agar overflow-hidden hanya berlaku di sini --}}
-        <div class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
-            <div class="absolute right-0 top-0 h-full w-1/3 bg-white opacity-10 transform skew-x-12 translate-x-10"></div>
-        </div>
-
-        {{-- Wrapper Konten (z-10 agar di atas background) --}}
-        <div class="relative z-10">
+    <form id="exportForm" action="{{ route('admin.laporan-gaji.export') }}" method="GET">
             
-            {{-- Header Filter --}}
-            <div class="flex items-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2">
-                    <path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/>
-                </svg>
-                <h2 class="text-xl font-bold">Filter Periode</h2>
+        <div class="relative bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 mb-10 text-white shadow-lg">
+            
+            {{-- Background Decoration --}}
+            <div class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
+                <div class="absolute right-0 top-0 h-full w-1/3 bg-white opacity-10 transform skew-x-12 translate-x-10"></div>
             </div>
 
-            {{-- Form Inputs --}}
-            <div class="flex space-x-4 items-end">
-                {{-- Dropdown Bulan --}}
-                <div class="flex-1 min-w-[100px] relative dropdown-container" id="dropdownBulan">
-                    <label for="bulan" class="text-sm font-semibold block mb-1">Bulan</label>
-                    
-                    <div class="w-full text-blue-600 bg-white border-none rounded-xl py-2 px-4 text-base shadow-inner flex justify-between items-center cursor-pointer dropdown-trigger"> 
-                        <span class="dropdown-selected-value">Desember</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 dropdown-arrow transition duration-150">
-                            <path d="m6 9 6 6 6-6"/>
-                        </svg>
-                    </div>
-                    {{-- Z-50 agar melayang di atas elemen lain --}}
-                    <ul class="absolute left-0 z-50 w-full mt-1 bg-white rounded-xl border border-gray-200 shadow-xl hidden dropdown-options-list max-h-40 overflow-y-auto">
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="januari">Januari</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="februari">Februari</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="maret">Maret</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="april">April</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="mei">Mei</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="juni">Juni</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="juli">Juli</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="agustus">Agustus</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="september">September</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="oktober">Oktober</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="november">November</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="desember">Desember</li>                    </ul>
-                    <input type="hidden" name="bulan" id="bulan-input" value="desember">
-                </div>
-                
-                {{-- Dropdown Tahun --}}
-                <div class="flex-1 min-w-[100px] relative dropdown-container" id="dropdownTahun">
-                    <label for="tahun" class="text-sm font-semibold block mb-1">Tahun</label>
-                    
-                    <div class="w-full text-blue-600 bg-white border-none rounded-xl py-2 px-4 text-base shadow-inner flex justify-between items-center cursor-pointer dropdown-trigger">
-                        <span class="dropdown-selected-value">2025</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 dropdown-arrow transition duration-150">
-                            <path d="m6 9 6 6 6-6"/>
-                        </svg>
-                    </div>
-
-                    <ul class="absolute left-0 z-50 w-full mt-1 bg-white rounded-xl border border-gray-200 shadow-xl hidden dropdown-options-list max-h-40 overflow-y-auto">
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="2025">2025</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="2024">2024</li>
-                        <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="2023">2023</li>
-                    </ul>
-                    <input type="hidden" name="tahun" id="tahun-input" value="2025">
+            <div class="relative z-10">
+                {{-- Header --}}
+                <div class="flex items-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/></svg>
+                    <h2 class="text-xl font-bold">Filter Periode</h2>
                 </div>
 
-                {{-- Tombol Export --}}
-                <button class="flex-1 flex items-center justify-center space-x-2 bg-green-600 text-white font-semibold py-2 px-6 rounded-xl transition duration-150 hover:bg-green-700 shadow-md h-[42px]">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m-3-3h6m-7 6h12a2 2 0 002-2V7a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <span>Export Excel</span>
-                </button>
+                <div class="flex space-x-4 items-end">
+                    
+                    {{-- 1. DROPDOWN BULAN --}}
+                    <div class="flex-1 min-w-[100px] relative dropdown-container" id="dropdownBulan">
+                        <label class="text-sm font-semibold block mb-1">Bulan</label>
+                        
+                        {{-- Trigger Tombol --}}
+                        <div class="dropdown-trigger w-full text-blue-600 bg-white border-none rounded-xl py-2 px-4 text-base shadow-inner flex justify-between items-center cursor-pointer"> 
+                            {{-- Tampilkan Nama Bulan saat ini (Pakai int agar aman) --}}
+                            <span class="dropdown-selected-label">
+                                {{ \Carbon\Carbon::create()->month((int) request('bulan', now()->month))->translatedFormat('F') }}
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 dropdown-arrow transition duration-150"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+
+                        {{-- List Opsi --}}
+                        <ul class="dropdown-options absolute left-0 z-50 w-full mt-1 bg-white rounded-xl border border-gray-200 shadow-xl hidden max-h-40 overflow-y-auto">
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="1">Januari</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="2">Februari</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="3">Maret</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="4">April</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="5">Mei</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="6">Juni</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="7">Juli</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="8">Agustus</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="9">September</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="10">Oktober</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="11">November</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="12">Desember</li>
+                        </ul>
+
+                        {{-- Input Hidden (Ini yang dikirim ke Controller) --}}
+                        <input type="hidden" name="bulan" class="dropdown-input" value="{{ request('bulan', now()->month) }}">
+                    </div>
+                    
+                    {{-- 2. DROPDOWN TAHUN --}}
+                    <div class="flex-1 min-w-[100px] relative dropdown-container" id="dropdownTahun">
+                        <label class="text-sm font-semibold block mb-1">Tahun</label>
+                        
+                        <div class="dropdown-trigger w-full text-blue-600 bg-white border-none rounded-xl py-2 px-4 text-base shadow-inner flex justify-between items-center cursor-pointer">
+                            <span class="dropdown-selected-label">{{ request('tahun', now()->year) }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 dropdown-arrow transition duration-150"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+
+                        <ul class="dropdown-options absolute left-0 z-50 w-full mt-1 bg-white rounded-xl border border-gray-200 shadow-xl hidden max-h-40 overflow-y-auto">
+                            {{-- PERBAIKAN: value harus sesuai dengan teks tahunnya --}}
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="2026">2026</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="2025">2025</li>
+                            <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer text-gray-800" data-value="2024">2024</li>
+                        </ul>
+
+                        <input type="hidden" name="tahun" class="dropdown-input" value="{{ request('tahun', now()->year) }}">
+                    </div>
+
+                    {{-- TOMBOL SUBMIT --}}
+                    <button type="submit" class="flex-1 flex items-center justify-center space-x-2 bg-green-600 text-white font-semibold py-2 px-6 rounded-xl transition duration-150 hover:bg-green-700 shadow-md h-[42px]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m-3-3h6m-7 6h12a2 2 0 002-2V7a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span>Export Excel</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     @php
-        // Ambil data (default 0 jika null)
         $valKomisi    = $totalKomisi ?? 0;
-        $valTotalGaji = $totalGaji ?? 0;   // Total Pengeluaran (Gaji + Komisi)
+        $valTotalGaji = $totalGaji ?? 0;   
         $valRevenue   = $totalRevenue ?? 0;
         
-        // Hitung Gaji Pokok
         $valGajiPokok = $valTotalGaji - $valKomisi;
 
-        // Simpan Icon dalam variable biar kodingan HTML di bawah tidak kepanjangan
         $iconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>';
     @endphp
 
@@ -172,7 +174,7 @@
                         
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             <div class="font-semibold">{{ $data->nama_lengkap }}</div>
-                            <div class="text-xs text-gray-500">ID: SALES-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}</div>
+                            <div class="text-xs text-gray-500">ID: SLS-{{ str_pad($data->id, 3, '0', STR_PAD_LEFT) }}</div>
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
@@ -213,76 +215,63 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil semua elemen dengan class .dropdown-container
         const dropdowns = document.querySelectorAll('.dropdown-container');
 
         dropdowns.forEach(dropdown => {
             const trigger = dropdown.querySelector('.dropdown-trigger');
-            const optionsList = dropdown.querySelector('.dropdown-options-list');
-            const selectedValueSpan = dropdown.querySelector('.dropdown-selected-value');
-            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            const optionsList = dropdown.querySelector('.dropdown-options');
+            const selectedLabel = dropdown.querySelector('.dropdown-selected-label');
+            const hiddenInput = dropdown.querySelector('.dropdown-input');
             const arrow = dropdown.querySelector('.dropdown-arrow');
 
-            // Fungsi untuk membuka/menutup dropdown
-            trigger.addEventListener('click', () => {
-                // Tutup dropdown lain yang mungkin terbuka
-                document.querySelectorAll('.dropdown-options-list').forEach(list => {
-                    if (list !== optionsList && !list.classList.contains('hidden')) {
-                         list.classList.add('hidden');
-                         list.closest('.dropdown-container').querySelector('.dropdown-arrow').style.transform = 'rotate(0deg)';
-                         
-                         // Mengembalikan border radius penuh pada trigger dropdown lain
-                         list.closest('.dropdown-container').querySelector('.dropdown-trigger').classList.remove('rounded-b-none');
-                    }
+            // 1. Toggle Buka/Tutup saat Trigger diklik
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation(); // Mencegah event bubbling
+                
+                // Tutup semua dropdown lain dulu biar rapi
+                document.querySelectorAll('.dropdown-options').forEach(el => {
+                    if (el !== optionsList) el.classList.add('hidden');
                 });
 
-
-                const isHidden = optionsList.classList.toggle('hidden');
+                // Toggle class hidden
+                optionsList.classList.toggle('hidden');
                 
-                // Rotasi ikon panah
-                if (!isHidden) {
-                    arrow.style.transform = 'rotate(180deg)';
-                    // Hapus rounded-b-xl dari trigger saat dibuka
-                    trigger.classList.add('rounded-b-none');
-                } else {
-                    arrow.style.transform = 'rotate(0deg)';
-                    // Kembalikan rounded-xl penuh saat ditutup
-                    trigger.classList.remove('rounded-b-none');
-                }
+                // Efek putar panah (optional)
+                if(arrow) arrow.classList.toggle('rotate-180');
             });
 
-            // Handle pemilihan opsi
-            optionsList.addEventListener('click', (e) => {
-                if (e.target.tagName === 'LI') {
-                    const newValue = e.target.getAttribute('data-value');
-                    const newText = e.target.textContent.trim();
+            // 2. Saat Opsi (li) dipilih
+            dropdown.querySelectorAll('li').forEach(option => {
+                option.addEventListener('click', () => {
+                    // Ambil text (misal: "Januari") dan value (misal: "1")
+                    const text = option.textContent;
+                    const value = option.getAttribute('data-value');
 
-                    // 1. Update teks yang ditampilkan
-                    selectedValueSpan.textContent = newText;
-                    
-                    // 2. Update nilai hidden input untuk form submission
-                    hiddenInput.value = newValue;
-                    
-                    // 3. Tutup dropdown
+                    // Update Tampilan Label
+                    selectedLabel.textContent = text;
+
+                    // Update Nilai Input Hidden (PENTING untuk dikirim ke Controller)
+                    hiddenInput.value = value;
+
+                    // Tutup dropdown setelah memilih
                     optionsList.classList.add('hidden');
-                    arrow.style.transform = 'rotate(0deg)';
-                    
-                    // Kembalikan rounded-xl penuh pada trigger saat ditutup
-                    trigger.classList.remove('rounded-b-none');
-                }
+                    if(arrow) arrow.classList.remove('rotate-180');
+                });
             });
+        });
 
-            // Tutup dropdown jika mengklik di luar area dropdown
-            document.addEventListener('click', (e) => {
-                if (!dropdown.contains(e.target)) {
-                    if (!optionsList.classList.contains('hidden')) {
-                        optionsList.classList.add('hidden');
-                        arrow.style.transform = 'rotate(0deg)';
-                        // Kembalikan rounded-xl penuh pada trigger saat ditutup
-                        trigger.classList.remove('rounded-b-none');
-                    }
-                }
-            });
+        // 3. Tutup dropdown jika klik di luar area (sembarang tempat)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown-container')) {
+                document.querySelectorAll('.dropdown-options').forEach(el => {
+                    el.classList.add('hidden');
+                });
+                document.querySelectorAll('.dropdown-arrow').forEach(el => {
+                    el.classList.remove('rotate-180');
+                });
+            }
         });
     });
 </script>

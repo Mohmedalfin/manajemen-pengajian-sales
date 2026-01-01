@@ -32,8 +32,7 @@ class LaporanGajiService
                 DB::raw('COALESCE(SUM(transaksi_penjualan.komisi_penjualan), 0) as total_komisi')
             )
             // 3. GROUP BY (Wajib saat menggunakan Agregasi)
-            ->groupBy('sales.id', 'sales.nama_lengkap', 'sales.gaji_pokok')
-            ->get();
+            ->groupBy('sales.id', 'sales.nama_lengkap', 'sales.gaji_pokok');
     }
 
     public function getPoinLaporan(int $bulan, int $tahun): array

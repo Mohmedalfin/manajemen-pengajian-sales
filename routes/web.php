@@ -57,10 +57,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::put('/barang/{barang}', [ProdukController::class, 'update'])->name('barang.update');
     Route::delete('/barang/{barang}', [ProdukController::class,'destroy'])->name('barang.destroy');
 
-
-
-
     // Laporan
+    Route::get('/laporan-gaji/export', [LaporanGajiController::class, 'exportExcel'])->name('laporan-gaji.export');
+
     Route::resource('laporan-gaji', LaporanGajiController::class);
 
     // Profile (singleton)

@@ -17,37 +17,39 @@
         @include('admin.partials.sidebar')
     @endif
     
-    <main class="flex-1 p-8 overflow-y-auto">
-        
+    <main class="flex-1 p-8 overflow-y-auto"> 
         @if (!request()->routeIs('admin.profile.*') && !request()->routeIs('admin.password.*'))
-        
-            <header class="flex justify-between items-center mb-10">
-                
+        <header class="flex justify-between items-center mb-10">
             <div class="w-0 h-10"></div> 
-                <form id="searchForm" method="GET" class="relative w-full mx-auto mr-8">
-                    <input
-                        type="text"
-                        name="search"
-                        id="searchInput"
-                        placeholder="Telusuri"
-                        value="{{ request('search') }}"
-                        class="w-full p-3 pl-4 
-                            border-2 border-blue-400  
-                            rounded-full 
-                            focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                            text-gray-700 placeholder-blue-500 font-medium 
-                            shadow-md outline-none bg-white"
-                    >
+                @if(!request()->routeIs('dashboard'))
+                    <form id="searchForm" method="GET" class="relative w-full mx-auto mr-8">
+                        <input
+                            type="text"
+                            name="search"
+                            id="searchInput"
+                            placeholder="Telusuri"
+                            value="{{ request('search') }}"
+                            class="w-full p-3 pl-4 
+                                border-2 border-blue-400  
+                                rounded-full 
+                                focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                                text-gray-700 placeholder-blue-500 font-medium 
+                                shadow-md outline-none bg-white"
+                        >
 
-                    <button type="submit"
-                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
-                            </path>
-                        </svg>
-                    </button>
-                </form>
+                        <button type="submit"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                                </path>
+                            </svg>
+                        </button>
+                    </form>
+                @else
+                    {{-- Spacer kosong agar layout tidak berantakan jika search hilang --}}
+                    <div class="w-full mr-8"></div>
+                @endif
 
                 
                 {{-- PROFIL AVATAR --}}
@@ -62,18 +64,16 @@
                         
                         <div class="px-4 pb-3 border-b border-gray-200">
                             @php
-                                $userName = 'Admin Clara Sales'; 
-                                $userEmail = 'admin@clarasales.com'; 
+                                $userName = 'Admin'; 
                             @endphp
                             <p class="text-sm font-semibold text-gray-800 truncate">{{ $userName }}</p>
-                            <p class="text-xs text-gray-500 truncate">{{ $userEmail }}</p>
                         </div>
 
                         {{-- Link ke Profil Admin --}}
-                        <a href="{{ route('admin.profile.index') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150">
+                        {{-- <a href="{{ route('admin.profile.index') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                            Profil
-                        </a>
+                            Edit Password
+                        </a> --}}
                         
                         <a href="{{ route('logout') }}" 
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -84,7 +84,7 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                     </div>
                 </div>
-            </header>
+        </header>
         @endif
 
         @yield('content')
