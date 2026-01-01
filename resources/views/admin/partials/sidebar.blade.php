@@ -13,9 +13,9 @@
         {{-- Logo Clarity --}}
         <div class="flex items-center space-x-2 mb-10">
             <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
-                <span class="text-white text-lg font-bold">C</span>
+                <span class="text-white text-lg font-bold">Gj</span>
             </div>
-            <span class="text-2xl font-bold text-gray-800">Clarity</span>
+            <span class="text-2xl font-bold text-gray-800">Gajihan</span>
         </div>
         
         {{-- Menu Navigasi Admin --}}

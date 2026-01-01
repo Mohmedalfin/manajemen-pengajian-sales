@@ -1,17 +1,53 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
 @extends('layouts.admin')
 @section('content')
-<div class="relative bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 mb-8 text-white shadow-lg overflow-hidden">
-    <div class="relative z-10">
-        <h1 class="text-2xl md:text-3xl font-bold mb-2">
-            Hallo <span class="font-bold text-yellow-500">{{ $user->username ?? '' }}</span> 
-        </h1>
-        <h1 class="text-2xl font-bold mb-4">Statistik Bulan  <span class="font-bold text-yellow-500"> {{ now()->translatedFormat('F') }}</span></h1>
-        <p class="text-base mb-3">
-            Pantau aktivitas terkini dan kelola data transaksi penjualan Anda di sini.
-        </p>
+<div class="relative w-full bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-500 rounded-3xl p-8 mb-8 text-white shadow-xl shadow-blue-500/20 overflow-hidden">
+    
+    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-yellow-400/20 rounded-full blur-2xl"></div>
+
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        
+        <div>
+            <div class="flex items-center space-x-2 mb-1">
+                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium tracking-wide text-blue-50 uppercase border border-white/10">
+                    Dashboard Admin
+                </span>
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
+                Halo, <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-400">{{ $user->username ?? 'User' }}</span> 👋
+            </h1>
+            
+            <p class="mt-3 text-blue-100 text-lg font-light max-w-xl leading-relaxed">
+                Berikut adalah ringkasan performa Anda untuk bulan 
+                <span class="font-semibold text-white border-b-2 border-yellow-400/50 pb-0.5">
+                    {{ now()->translatedFormat('F Y') }}
+                </span>.
+            </p>
+
+            {{-- Tombol Kecil / Info Tambahan --}}
+            <div class="mt-6 flex items-center space-x-4 text-sm text-blue-50/80">
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    Statistik Terkini
+                </div>
+                <div class="w-1 h-1 bg-blue-300 rounded-full"></div>
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    Data Realtime
+                </div>
+            </div>
+        </div>
+
+        {{-- Bagian Kanan: Dekorasi Ikon/Ilustrasi (Opsional tapi menambah estetika) --}}
+        <div class="hidden md:block opacity-90 transform rotate-12 translate-x-4">
+             <div class="w-24 h-24 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 flex items-center justify-center shadow-inner">
+                <svg class="w-12 h-12 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+             </div>
+        </div>
     </div>
-    <div class="absolute right-0 top-0 h-full w-1/3 bg-white opacity-10 transform skew-x-12 translate-x-10"></div>
 </div>
 
 <div class="grid grid-cols-4 gap-6 mb-10">
