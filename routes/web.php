@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SalesController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\LaporanGajiController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Sales\DashboardSalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,9 +95,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 Route::middleware(['auth'])->prefix('sales')->name('sales.')->group(function () {
 
     // 1. Dashboard Sales
-    Route::get('/dashboard', function () {
-        return view('sales.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardSalesController::class, 'index'])->name('dashboard');
 
     // 2. Profil Sales
     Route::get('/profil', function () {

@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="flex flex-col md:flex-row items-center md:items-baseline mt-1">
-            <span class="text-2xl md:text-3xl font-bold text-gray-800 md:mr-2">20</span>
+            <span class="text-2xl md:text-3xl font-bold text-gray-800 md:mr-2">{{ $summary['totalTransaksi'] }}</span>
             <span class="text-xs md:text-sm text-gray-400">Sales</span>
         </div>
     </div>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="flex flex-col md:flex-row items-center md:items-baseline mt-1">
-            <span class="text-2xl md:text-3xl font-bold text-gray-800 md:mr-2">150</span>
+            <span class="text-2xl md:text-3xl font-bold text-gray-800 md:mr-2">{{ $summary['totalUnitBulanIni'] }}</span>
             <span class="text-xs md:text-sm text-gray-400">Unit</span>
         </div>
     </div>
@@ -57,7 +57,7 @@
             {{-- Mobile: text-2xl (Seragam) --}}
             <span class="block md:hidden text-2xl font-bold text-gray-800">Rp 5.0jt</span>
             {{-- Desktop: text-2xl (Full Format) --}}
-            <span class="hidden md:block text-2xl font-bold text-gray-800">Rp 5.000.000</span>
+            <span class="hidden md:block text-2xl font-bold text-gray-800">Rp {{ number_format($summary['totalPenjualan'], 0, ',', '.') }}</span>
         </div>
     </div>
 
@@ -71,7 +71,7 @@
         </div>
         <div class="mt-1">
              <span class="block md:hidden text-2xl font-bold text-gray-800">Rp 3.0jt</span>
-             <span class="hidden md:block text-2xl font-bold text-gray-800">Rp 3.000.000</span>
+             <span class="hidden md:block text-2xl font-bold text-gray-800">Rp {{ number_format($summary['totalKomisi'], 0, ',', '.') }}</span>
         </div>
     </div>
 </div>
