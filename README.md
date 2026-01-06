@@ -1,60 +1,148 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Sistem Informasi Manajemen Penggajian Sales (SIM-Payroll)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Laravel](https://img.shields.io/badge/Laravel-10.x-red) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
 
-## About Laravel
+**Sistem Informasi Manajemen Penggajian Sales** adalah aplikasi berbasis web yang dirancang untuk mempermudah proses pencatatan penjualan, monitoring stok barang, serta otomatisasi perhitungan komisi dan penggajian sales secara efisien.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Teknologi Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Project ini dibangun menggunakan stack teknologi modern untuk memastikan performa yang cepat dan tampilan yang responsif:
 
-## Learning Laravel
+* **Laravel (Backend):** Menggunakan framework PHP Laravel yang handal untuk menangani logika bisnis, keamanan (auth), dan manajemen database.
+* **Tailwind CSS (Styling):** Framework CSS utility-first digunakan untuk mendesain antarmuka (UI) yang modern, bersih, dan responsif di berbagai perangkat.
+* **JavaScript (Interactivity):** Menangani interaksi dinamis pada frontend, validasi form, serta visualisasi data menggunakan library chart.
+* **MySQL (Database):** Penyimpanan data relasional untuk transaksi, user, dan inventaris.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Fitur Sistem
 
-## Laravel Sponsors
+Sistem ini memiliki dua aktor utama dengan hak akses berbeda:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 👨‍💼 Administrator (Admin)
+* **Dashboard Analitik:** Grafik visual (Chart.js) untuk penjualan, total transaksi, unit terjual, revenue, dan Leaderboard Top Sales.
+* **Validasi Transaksi:** Fitur **Approve** (Komisi cair) atau **Reject** untuk setiap laporan penjualan dari sales.
+* **Manajemen Sales & Auto-Notif WA:**
+    * CRUD Data Sales.
+    * **Fitur Unggulan:** Saat Admin input sales baru, sistem **otomatis mengirim Username & Password** ke WhatsApp sales tersebut.
+* **Manajemen Barang:** Monitoring stok, harga satuan, dan update unit barang.
+* **Laporan Gaji (Payroll):** Kalkulasi otomatis profit, pengeluaran gaji, total komisi, dan fitur **Export to Excel**.
 
-### Premium Partners
+### 🧑‍💼 Sales (Pengguna)
+* **Dashboard Performa:** Statistik pribadi, Line Chart (Target vs Realisasi), dan status transaksi (Pending/Approved).
+* **Input Penjualan:** Form input barang terjual disertai **Upload Bukti Foto** (struk/barang).
+* **Profil & Keamanan:** Edit biodata diri dan fitur ganti password untuk keamanan akun.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 💻 Panduan Instalasi (Local Development)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ikuti langkah-langkah berikut agar project dapat berjalan di komputer Anda.
 
-## Code of Conduct
+### Prasyarat
+* PHP >= 8.1
+* Composer
+* MySQL
+* Node.js & NPM
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Langkah-langkah Instalasi
 
-## Security Vulnerabilities
+1.  **Clone Repository**
+    Download source code project ini:
+    ```bash
+    git clone [https://github.com/username-anda/nama-repo-anda.git](https://github.com/username-anda/nama-repo-anda.git)
+    cd nama-repo-anda
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2.  **Install Dependencies (Backend)**
+    Install library PHP yang dibutuhkan menggunakan Composer:
+    ```bash
+    composer install
+    ```
 
-## License
+3.  **Setup Environment File**
+    Duplikat file konfigurasi `.env.example` menjadi `.env`:
+    ```bash
+    cp .env.example .env
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# manajemen-penjualan-gaji-sales" 
+4.  **Konfigurasi Database & API**
+    Buka file `.env` di text editor, lalu atur koneksi database dan API WA:
+    
+    * **Database:** (Buat database kosong terlebih dahulu di phpMyAdmin)
+        ```env
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=nama_database_kamu
+        DB_USERNAME=root
+        DB_PASSWORD=
+        ```
+    * **WhatsApp Gateway:** (Sesuaikan dengan provider API yang digunakan)
+        ```env
+        WA_API_URL=[https://api.whatsapp.com/send](https://api.whatsapp.com/send)
+        WA_API_KEY=your_api_key_here
+        ```
+
+5.  **Generate Application Key**
+    Buat key enkripsi keamanan untuk Laravel:
+    ```bash
+    php artisan key:generate
+    ```
+
+6.  **Migrasi Database & Seeder**
+    Jalankan perintah ini untuk membuat tabel dan mengisi data akun Admin default:
+    ```bash
+    php artisan migrate --seed
+    ```
+
+7.  **Setup Storage Link**
+    **PENTING:** Jalankan ini agar foto bukti transaksi bisa diakses publik:
+    ```bash
+    php artisan storage:link
+    ```
+
+8.  **Install & Compile Dependencies (Frontend)**
+    Install package Tailwind/JS dan compile asset:
+    ```bash
+    npm install && npm run build
+    ```
+
+9.  **Jalankan Server**
+    Nyalakan server lokal Laravel:
+    ```bash
+    php artisan serve
+    ```
+
+10. **Selesai!**
+    Buka browser dan akses: `http://localhost:8000`
+
+---
+
+## 🔐 Akun Default (Testing)
+
+Gunakan akun ini untuk login pertama kali setelah menjalankan seeder:
+
+| Role | Username / Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@example.com` | `password` |
+| **Sales** | `sales1` | `password` |
+
+---
+
+## 🤝 Kontribusi
+
+Project ini adalah Open Source. Jika ingin berkontribusi:
+1.  Fork repository ini.
+2.  Buat branch fitur (`git checkout -b fitur-baru`).
+3.  Commit perubahan (`git commit -m 'Menambahkan fitur keren'`).
+4.  Push ke branch (`git push origin fitur-baru`).
+5.  Buat Pull Request.
+
+---
+
+## 📄 Lisensi
+
+[MIT License](https://opensource.org/licenses/MIT)
